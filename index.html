@@ -11,18 +11,7 @@
         <div id="indication_light" class="indication_light"></div>
         <button onmousedown="onTapDown()" onmouseup="onTapUp()" ontouchstart="onTapDown()" ontouchend="onTapUp()">Tap</button>
     </div>
+    <script type ="text/javascript" src="touchEvents.js"></script>
 </body>
-
-<script>
-
-    function onTapDown() {
-        document.getElementById("indication_light").style.backgroundColor = "green";
-        window.navigator.vibrate(200);
-    }
-
-    function onTapUp() {
-        document.getElementById("indication_light").style.backgroundColor = "red";
-    }
-</script>
 
 </html>
