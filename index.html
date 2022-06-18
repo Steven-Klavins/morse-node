@@ -1,0 +1,27 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="index.css">
+    <title>Morse Node</title>
+</head>
+
+<body>
+    <div>
+        <h1>Morse Node</h1>
+        <div id="indication_light" class="indication_light"></div>
+        <button onmousedown="onTapDown()" onmouseup="onTapUp()">Tap</button>
+    </div>
+</body>
+
+<script>
+
+    function onTapDown() {
+        document.getElementById("indication_light").style.backgroundColor = "green";
+    }
+
+    function onTapUp() {
+        document.getElementById("indication_light").style.backgroundColor = "red";
+    }
+</script>
+
+</html>
