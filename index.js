@@ -1,16 +1,36 @@
-import express from "express";
+const express = require('express');
+const app = express();
+const http = require('http');
+const server = http.createServer(app);
+const { Server } = require("socket.io");
+const io = new Server(server);
 
-const app = express()
-const port = 3000
+// import * as url from 'url';
 
-
+// // const __filename = url.fileURLToPath(import.meta.url);
+// const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 app.get('/', (req, res) => {
-  app.use(express.static(__dirname + "/public"))
-  res.sendFile(__dirname + '/index.html')
-  
-})
+  res.sendFile(__dirname + '/test.html');
+});
 
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`)
-})
+io.on('connection', (socket) => {
+  console.log('a user connected');
+});
+
+server.listen(3000, () => {
+  console.log('listening on *:3000');
+});
+
+
+
+// import * as url from 'url';
+
+// // const __filename = url.fileURLToPath(import.meta.url);
+// const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+
+// app.get('/', (req, res) => {
+//   app.use(express.static(__dirname + "/public"))
+//   res.sendFile(__dirname + '/index.html')
+  
+// })
