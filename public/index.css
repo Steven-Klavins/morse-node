@@ -1,8 +1,49 @@
-.indication_light {
- background-color: red;
- width: 10%;
- height: 10%;
- margin: 0 auto;
+
+
+@media only screen and (max-width: 480px) {
+    /* For mobile phones */
+   
+    .indication_light {
+        background-color: red;
+        width: 50%;
+        height: 50%;
+        margin: 50 auto;
+       }
+
+    .container {
+        text-align: center;
+        width: 60%;
+        height: 40%;
+        margin: 0 auto;
+        margin-top: 30%;
+    }
+    
+    button{
+        height:40px;
+        width:60px;
+    }
 }
 
+@media only screen and (min-width: 480px) {
+    /* For desktop */
+   
+    .indication_light {
+        background-color: red;
+        width: 50%;
+        height: 50%;
+        margin: 50 auto;
+       }
 
+    .container {
+        text-align: center;
+        width: 60%;
+        height: 40%;
+        margin: 0 auto;
+        margin-top: 20%;
+    }
+
+    button{
+        height:40px;
+        width:60px;
+    }
+}
