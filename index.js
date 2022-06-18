@@ -11,6 +11,7 @@ const io = new Server(server);
 // const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 app.get("/", (req, res) => {
+  app.use(express.static(__dirname + "/public"));
   res.sendFile(__dirname + "/test.html");
 });
 
@@ -18,6 +19,9 @@ io.on("connection", (socket) => {
   socket.on("chat message", (msg) => {
     console.log("message: " + msg);
     io.emit("chat message", msg);
+  });
+  socket.on("touch event", (short) => {
+    console.log(short);
   });
 });
 
