@@ -35,6 +35,8 @@ function recorder(duration) {
   }
 }
 
+
+
 function onLongTouch() {
   touchLong();
   console.log("Long Touch sent");
@@ -61,15 +63,14 @@ const listen = () => {
   });
 
   socket.on("active users", (activeUsers) => {
-    console.log('Active users');
     console.log(activeUsers);
+    users.innerHTML=" ";
     for (var i = 0; i < activeUsers.length; i++) {
       var item = document.createElement("li");
       item.textContent = activeUsers[i];
       users.appendChild(item);
-   }
- 
-});
+    }
+  });
 
 var input = document.getElementById('name');
 var form = document.getElementById('form');
@@ -84,6 +85,17 @@ form.addEventListener('submit', function(e) {
   e.preventDefault();
   if (input.value) {
     newUserEvent(input.value);
+  }
+});
+
+
+socket.on("del users", (activeUsers) => {
+  console.log(activeUsers);
+  users.innerHTML=" ";
+  for (var i = 0; i < activeUsers.length; i++) {
+    var item = document.createElement("li");
+    item.textContent = activeUsers[i];
+    users.appendChild(item);
   }
 });
 
