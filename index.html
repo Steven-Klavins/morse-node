@@ -1,27 +1,26 @@
 <html>
-  <head>
+
+<head>
     <link rel="stylesheet" href="index.css" />
     <title>Morse Node</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="container">
-      <h1>Morse Node</h1>
-      <div id="indication_light" class="indication_light"></div>
-      <button
-        onmousedown="onTapDown()"
-        onmouseup="onTapUp()"
-        ontouchstart="onTapDown()"
-        ontouchend="onTapUp()"
-      >
-        Tap
-      </button>
+        <h1>Morse Node</h1>
+        <div class="trigger_container">
+            <img id="key_transmitter" onmousedown="onTapDown()" onmouseup="onTapUp()" ontouchstart="onTapDown()"
+                ontouchend="onTapUp()" src="1.jpg">
+                <div id="indication_light" class="indication_light"></div>
+            </img>
+        </div>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
     <script src="touchEvents.js"></script>
     <script>
-      listen();
+        listen();
     </script>
-  </body>
+</body>
+
 </html>
