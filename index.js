@@ -17,10 +17,6 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  // socket.on("chat message", (msg) => {
-  //   console.log("message: " + msg);
-  //   io.emit("chat message", msg);
-  // });
   socket.on("touch short", () => {
     socket.broadcast.emit("vibrate short");
     console.log("Vibrate short sent");
@@ -35,14 +31,3 @@ io.on("connection", (socket) => {
 server.listen(3000, () => {
   console.log("listening on *:3000");
 });
-
-// import * as url from 'url';
-
-// // const __filename = url.fileURLToPath(import.meta.url);
-// const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
-
-// app.get('/', (req, res) => {
-//   app.use(express.static(__dirname + "/public"))
-//   res.sendFile(__dirname + '/index.html')
-
-// })
