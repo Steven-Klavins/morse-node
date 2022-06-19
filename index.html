@@ -1,27 +1,37 @@
 <html>
-  <head>
-    <link rel="stylesheet" href="index.css" />
-    <title>Morse Node</title>
-  </head>
 
-  <body>
-    <div class="container">
-      <h1>Morse Node</h1>
-      <div id="indication_light" class="indication_light"></div>
-      <button
-        onmousedown="onTapDown()"
-        onmouseup="onTapUp()"
-        ontouchstart="onTapDown()"
-        ontouchend="onTapUp()"
-      >
-        Tap
-      </button>
-    </div>
+<head>
+  <link rel="stylesheet" href="index.css" />
+  <title>Morse Node</title>
+</head>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
-    <script src="touchEvents.js"></script>
-    <script>
-      listen();
-    </script>
-  </body>
+<body>
+  <div class="mainScreen" style="display:block">
+    <h1>Morse Node</h1>
+    <div id="indication_light" class="indication_light"></div>
+    <form id="form">
+      <input placeholder="Add your name" type="text" id="name" name="name">
+      <input type="button" onclick=newUserEvent(name) value="Submit">
+    </form>
+  </div>
+
+  <div class="activeUsers" style="display:none">
+
+    <h1>Active Users</h1>
+    <!-- <div id="username" th:text="${}"></div> -->
+    <div id="indication_light" class="indication_light"></div>
+
+    <button onmousedown="onTapDown()" onmouseup="onTapUp()" ontouchstart="onTapDown()" ontouchend="onTapUp()">
+      Tap
+    </button>
+
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
+  <script src="touchEvents.js"></script>
+  <script>
+    listen();
+  </script>
+</body>
+
 </html>

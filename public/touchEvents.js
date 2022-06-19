@@ -53,3 +53,25 @@ const listen = () => {
     console.log("vibrate signal - long");
   });
 };
+
+var input = document.getElementById('name');
+var form = document.getElementById('form');
+
+function newUserEvent(name){
+  socket.emit('user connected', name);
+  document.getElementsByClassName('activeUsers')[0].setAttribute("style","display:block");
+  document.getElementsByClassName('mainScreen')[0].setAttribute("style","display:none");
+  console.log(socket.id);
+
+}
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  console.log('Function');
+  if (input.value) {
+    newUserEvent(input.value);
+    console.log(socket.id);
+  }
+});
+
+

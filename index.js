@@ -31,3 +31,8 @@ io.on("connection", (socket) => {
 server.listen(3000, () => {
   console.log("listening on *:3000");
 });
+
+app.get("/playground", (req, res) => {
+  app.use(express.static(__dirname + "/public"));
+  res.sendFile(__dirname + "/playground.html");
+});
