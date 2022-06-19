@@ -14,11 +14,13 @@ const touchShort = () => {
 
 function onTapDown() {
   document.getElementById("indication_light").style.backgroundColor = "green";
+  document.getElementById("key_transmitter").src ="2.jpg"
   start = Date.now();
 }
 
 function onTapUp() {
   document.getElementById("indication_light").style.backgroundColor = "red";
+  document.getElementById("key_transmitter").src ="1.jpg"
   end = Date.now();
   duration = end - start;
   console.log(duration);
@@ -32,6 +34,8 @@ function recorder(duration) {
     onLongTouch();
   }
 }
+
+
 
 function onLongTouch() {
   touchLong();
@@ -61,6 +65,7 @@ const listen = () => {
   socket.on("active users", (activeUsers) => {
     console.log(activeUsers);
     users.innerHTML="";
+
     for (var i = 0; i < activeUsers.length; i++) {
       var item = document.createElement("li");
       item.textContent = activeUsers[i];
@@ -94,5 +99,16 @@ const listen = () => {
       newUserEvent(input.value);
     }
   });
+
+
+socket.on("del users", (activeUsers) => {
+  console.log(activeUsers);
+  users.innerHTML=" ";
+  for (var i = 0; i < activeUsers.length; i++) {
+    var item = document.createElement("li");
+    item.textContent = activeUsers[i];
+    users.appendChild(item);
+  }
+});
 
 }

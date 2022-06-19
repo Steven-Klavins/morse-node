@@ -7,27 +7,28 @@
 
 <body>
   <div class="mainScreen" style="display:block">
-    <h1>Morse Node</h1>
-    <div id="indication_light" class="indication_light"></div>
+        <div class="container">
+        <h1>Morse Node</h1>
+    
     <form id="form">
       <input placeholder="Add your name" type="text" id="name" name="name">
       <input type="submit" value="Submit">
     </form>
   </div>
+  </div>
 
-  <div class="activeUsers" style="display:none">
+  <div class="activeUsers" style="display:none" >
 
     <h1>Active Users</h1>
+    <div class="trigger_container">
+        <img id="key_transmitter" onmousedown="onTapDown()" onmouseup="onTapUp()" ontouchstart="onTapDown()"
+            ontouchend="onTapUp()" src="1.jpg">
+            <div id="indication_light" class="indication_light"></div>
+        </img>
+    </div>
     <div>
       <ul id="users"></ul>
     </div>
-
-    <div id="indication_light" class="indication_light"></div>
-
-    <button onmousedown="onTapDown()" onmouseup="onTapUp()" ontouchstart="onTapDown()" ontouchend="onTapUp()">
-      Tap
-    </button>
-
   </div>
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.5.1/socket.io.js"></script>
@@ -36,5 +37,4 @@
     listen();
   </script>
 </body>
-
 </html>
