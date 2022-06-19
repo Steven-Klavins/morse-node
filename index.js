@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const http = require("http");
+const { SocketAddress } = require("net");
 const server = http.createServer(app);
 const { Server } = require("socket.io");
 const io = new Server(server);
@@ -20,9 +21,14 @@ io.on("connection", (socket) => {
   //   console.log("message: " + msg);
   //   io.emit("chat message", msg);
   // });
-  socket.on("touch event", (short) => {
-    io.emit("vibrate short");
-    console.log(short);
+  socket.on("touch short", () => {
+    socket.broadcast.emit("vibrate short");
+    console.log("Vibrate short sent");
+  });
+
+  socket.on("touch long", () => {
+    socket.broadcast.emit("vibrate long");
+    console.log("Vibrate long sent");
   });
 });
 

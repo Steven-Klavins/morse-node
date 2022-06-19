@@ -1,24 +1,19 @@
-var touchLimit = 300;
+var touchLimit = 250;
 var start;
 var end;
 var duration;
 const socket = io();
 
-// const touch = () => {
-//   socket.emit("touch event", "short");
-// };
-
 const touchLong = () => {
-  socket.emit("touch event", "long");
+  socket.emit("touch long");
 };
 
 const touchShort = () => {
-  socket.emit("touch event", "short new");
+  socket.emit("touch short");
 };
 
 function onTapDown() {
   document.getElementById("indication_light").style.backgroundColor = "green";
-  // window.navigator.vibrate(200);
   start = Date.now();
 }
 
@@ -39,8 +34,7 @@ function recorder(duration) {
 }
 
 function onLongTouch() {
-  //   window.navigator.vibrate(1000);
-  touchShort();
+  touchLong();
   console.log("Long Touch sent");
 }
 
@@ -51,10 +45,11 @@ function onShortTouch() {
 
 const listen = () => {
   socket.on("vibrate short", function () {
-    window.navigator.vibrate(500);
+    window.navigator.vibrate(250);
     console.log("vibrate signal - short vib");
   });
   socket.on("vibrate long", function () {
+    window.navigator.vibrate(750);
     console.log("vibrate signal - long");
   });
 };
