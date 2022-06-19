@@ -80,12 +80,12 @@ button{
     }
 
     .activeUsers {
-    .container {
         text-align: center;
         width: 100%;
         height: 40%;
         margin: 0 auto;
         margin-top: 30px;
+        color:yellow;
     }
     
     button {
@@ -111,6 +111,7 @@ button{
         height: 40%;
         margin: 0 auto;
         margin-top: 30px;
+        color:yellow;
     }
 
     button {
