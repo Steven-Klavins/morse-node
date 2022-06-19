@@ -6,10 +6,11 @@ const socket = io();
 
 const touchLong = () => {
   socket.emit("touch long");
+  socket.emit("user connected", "john");
 };
 
 const touchShort = () => {
-  socket.emit("touch short");
+  socket.emit("touch short", { to: "Karla", from: "John" });
 };
 
 function onTapDown() {
@@ -44,11 +45,13 @@ function onShortTouch() {
 }
 
 const listen = () => {
-  socket.on("vibrate short", function () {
+  socket.on("vibrate short", (message) => {
+    console.log("vibrate short message:", message);
     window.navigator.vibrate(250);
-    console.log("vibrate signal - short vib");
+    console.log("vibrate signal - short vibr");
   });
-  socket.on("vibrate long", function () {
+  socket.on("vibrate long", (message) => {
+    console.log("vibrate long message:", message);
     window.navigator.vibrate(750);
     console.log("vibrate signal - long");
   });

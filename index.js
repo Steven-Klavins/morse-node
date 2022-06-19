@@ -1,15 +1,16 @@
-const express = require("express");
+import express from "express";
+import http from "http";
+import { Server } from "socket.io";
+import * as url from "url";
+
 const app = express();
-const http = require("http");
-const { SocketAddress } = require("net");
 const server = http.createServer(app);
-const { Server } = require("socket.io");
 const io = new Server(server);
 
-// import * as url from 'url';
+// const __filename = url.fileURLToPath(import.meta.url);
+const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
-// // const __filename = url.fileURLToPath(import.meta.url);
-// const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
+const users = new Map();
 
 app.get("/", (req, res) => {
   app.use(express.static(__dirname + "/public"));
@@ -17,14 +18,28 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  socket.on("touch short", () => {
-    socket.broadcast.emit("vibrate short");
+  socket.on("user connected", (user) => {
+    socket.broadcast.emit("new user", user);
+    users.set(socket.id, user);
+    console.log("new user", user);
+    console.log("user list", users);
+  });
+
+  socket.on("touch short", (message) => {
+    socket.broadcast.emit("vibrate short", message);
     console.log("Vibrate short sent");
   });
 
-  socket.on("touch long", () => {
-    socket.broadcast.emit("vibrate long");
+  socket.on("touch long", (message) => {
+    socket.broadcast.emit("vibrate long", message);
     console.log("Vibrate long sent");
+  });
+
+  socket.on("disconnect", () => {
+    socket.broadcast.emit("del user", users[socket.id]);
+    console.log("disconnect");
+    users.delete(socket.id);
+    console.log("users", users);
   });
 });
 
