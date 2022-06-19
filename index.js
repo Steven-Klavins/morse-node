@@ -17,8 +17,8 @@ app.get("/", (req, res) => {
 });
 
 io.on("connection", (socket) => {
-  socket.on("touch short", () => {
-    socket.broadcast.emit("vibrate short");
+  socket.on("touch short", (message) => {
+    socket.broadcast.emit("vibrate short", message);
     console.log("Vibrate short sent");
   });
 
