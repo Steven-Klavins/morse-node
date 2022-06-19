@@ -14,11 +14,13 @@ const touchShort = () => {
 
 function onTapDown() {
   document.getElementById("indication_light").style.backgroundColor = "green";
+  document.getElementById("key_transmitter").src ="2.jpg"
   start = Date.now();
 }
 
 function onTapUp() {
   document.getElementById("indication_light").style.backgroundColor = "red";
+  document.getElementById("key_transmitter").src ="1.jpg"
   end = Date.now();
   duration = end - start;
   console.log(duration);
