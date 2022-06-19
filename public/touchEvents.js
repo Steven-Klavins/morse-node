@@ -64,9 +64,7 @@ var input = document.getElementById('name');
 var form = document.getElementById('form');
 
 const newUserEvent = (name) => {
-// function newUserEvent(input){
   socket.emit('user connected', name);
-  console.log(name);
   document.getElementsByClassName('activeUsers')[0].setAttribute("style","display:block");
   document.getElementsByClassName('mainScreen')[0].setAttribute("style","display:none");
 }
@@ -76,7 +74,6 @@ form.addEventListener('submit', function(e) {
   if (input.value) {
     newUserEvent(input.value);
   }
-  console.log(input.value);
 });
 
 
