@@ -44,7 +44,15 @@ button{
         margin: 50 auto;
        }
 
-    .container {
+    .mainScreen {
+        text-align: center;
+        width: 60%;
+        height: 40%;
+        margin: 0 auto;
+        margin-top: 30%;
+    }
+
+    .activeUsers {
         text-align: center;
         width: 60%;
         height: 40%;
@@ -68,7 +76,15 @@ button{
         margin: 50 auto;
        }
 
-    .container {
+    .mainScreen {
+        text-align: center;
+        width: 60%;
+        height: 40%;
+        margin: 0 auto;
+        margin-top: 20%;
+    }
+
+    .activeUsers {
         text-align: center;
         width: 60%;
         height: 40%;
