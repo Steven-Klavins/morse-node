@@ -43,12 +43,15 @@ function onShortTouch() {
   console.log("Short Touch sent");
 }
 
+var users = document.getElementById('users');
+
 const listen = () => {
   socket.on("vibrate short", (message) => {
     console.log("vibrate short message:", message);
     window.navigator.vibrate(250);
     console.log("vibrate signal - short vibr");
   });
+  
   socket.on("vibrate long", (message) => {
     console.log("vibrate long message:", message);
     window.navigator.vibrate(750);
@@ -56,9 +59,15 @@ const listen = () => {
   });
 
   socket.on("active users", (activeUsers) => {
+    console.log('Active users');
     console.log(activeUsers);
-  })
-};
+    for (var i = 0; i < activeUsers.length; i++) {
+      var item = document.createElement("li");
+      item.textContent = activeUsers[i];
+      users.appendChild(item);
+   }
+ 
+});
 
 var input = document.getElementById('name');
 var form = document.getElementById('form');
@@ -76,6 +85,4 @@ form.addEventListener('submit', function(e) {
   }
 });
 
-
-
-
+}

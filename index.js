@@ -19,9 +19,9 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   socket.on("user connected", (user) => {
-    console.log(user);
-    socket.broadcast.emit("active users", ["john","karla"]);
     users.set(socket.id, user);
+    socket.broadcast.emit("active users", Array.from(users.values()));
+    // console.log(Array.from(users.values()));
     console.log("new user", user);
     console.log("user list", users);
   });
@@ -37,9 +37,9 @@ io.on("connection", (socket) => {
   });
 
   socket.on("disconnect", () => {
-    socket.broadcast.emit("del user", users[socket.id]);
     console.log("disconnect");
     users.delete(socket.id);
+    socket.broadcast.emit("del user", Array.from(users.values()));
     console.log("users", users);
   });
 });

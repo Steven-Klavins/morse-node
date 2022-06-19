@@ -18,8 +18,15 @@
   <div class="activeUsers" style="display:none">
 
     <h1>Active Users</h1>
-    <!-- <div id="username" th:text="${}"></div> -->
-    <div id="indication_light" class="indication_light"></div>
+    <div>
+      <ul id="users"></ul>
+    </div>
+    <!-- <tr th:each="book : ${books}">
+      <td><span th:text="${book.title}"> Title </span></td>
+      <td><span th:text="${book.author}"> Author </span></td>
+  </tr>
+   -->
+  <div id="indication_light" class="indication_light"></div>
 
     <button onmousedown="onTapDown()" onmouseup="onTapUp()" ontouchstart="onTapDown()" ontouchend="onTapUp()">
       Tap
