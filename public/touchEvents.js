@@ -5,7 +5,7 @@ var duration;
 const socket = io();
 
 const touchLong = () => {
-  socket.emit("touch long", {to: "Karla", from: "John" });
+  socket.emit("touch long", { to: "Karla", from: "John" });
 };
 
 const touchShort = () => {
@@ -51,7 +51,7 @@ const listen = () => {
     window.navigator.vibrate(250);
     console.log("vibrate signal - short vibr");
   });
-  
+
   socket.on("vibrate long", (message) => {
     console.log("vibrate long message:", message);
     window.navigator.vibrate(750);
@@ -59,30 +59,40 @@ const listen = () => {
   });
 
   socket.on("active users", (activeUsers) => {
-    console.log('Active users');
     console.log(activeUsers);
+    users.innerHTML="";
     for (var i = 0; i < activeUsers.length; i++) {
       var item = document.createElement("li");
       item.textContent = activeUsers[i];
       users.appendChild(item);
-   }
- 
-});
+    }
+  });
 
-var input = document.getElementById('name');
-var form = document.getElementById('form');
 
-const newUserEvent = (name) => {
-  socket.emit('user connected', name);
-  document.getElementsByClassName('activeUsers')[0].setAttribute("style","display:block");
-  document.getElementsByClassName('mainScreen')[0].setAttribute("style","display:none");
-}
+  socket.on("del users", (activeUsers) => {
+    console.log(activeUsers);
+    users.innerHTML=" ";
+    for (var i = 0; i < activeUsers.length; i++) {
+      var item = document.createElement("li");
+      item.textContent = activeUsers[i];
+      users.appendChild(item);
+    }
+  });
 
-form.addEventListener('submit', function(e) {
-  e.preventDefault();
-  if (input.value) {
-    newUserEvent(input.value);
+  var input = document.getElementById('name');
+  var form = document.getElementById('form');
+
+  const newUserEvent = (name) => {
+    socket.emit('user connected', name);
+    document.getElementsByClassName('activeUsers')[0].setAttribute("style", "display:block");
+    document.getElementsByClassName('mainScreen')[0].setAttribute("style", "display:none");
   }
-});
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (input.value) {
+      newUserEvent(input.value);
+    }
+  });
 
 }
