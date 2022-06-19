@@ -5,8 +5,7 @@ var duration;
 const socket = io();
 
 const touchLong = () => {
-  socket.emit("touch long");
-  socket.emit("user connected", "john");
+  socket.emit("touch long", {to: "Karla", from: "John" });
 };
 
 const touchShort = () => {
@@ -55,26 +54,31 @@ const listen = () => {
     window.navigator.vibrate(750);
     console.log("vibrate signal - long");
   });
+
+  socket.on("active users", (activeUsers) => {
+    console.log(activeUsers);
+  })
 };
 
 var input = document.getElementById('name');
 var form = document.getElementById('form');
 
-function newUserEvent(name){
+const newUserEvent = (name) => {
+// function newUserEvent(input){
   socket.emit('user connected', name);
+  console.log(name);
   document.getElementsByClassName('activeUsers')[0].setAttribute("style","display:block");
   document.getElementsByClassName('mainScreen')[0].setAttribute("style","display:none");
-  console.log(socket.id);
-
 }
 
 form.addEventListener('submit', function(e) {
   e.preventDefault();
-  console.log('Function');
   if (input.value) {
     newUserEvent(input.value);
-    console.log(socket.id);
   }
+  console.log(input.value);
 });
+
+
 
 

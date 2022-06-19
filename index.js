@@ -19,7 +19,8 @@ app.get("/", (req, res) => {
 
 io.on("connection", (socket) => {
   socket.on("user connected", (user) => {
-    socket.broadcast.emit("new user", user);
+    console.log(user);
+    socket.broadcast.emit("active users", ["john","karla"]);
     users.set(socket.id, user);
     console.log("new user", user);
     console.log("user list", users);
@@ -45,9 +46,4 @@ io.on("connection", (socket) => {
 
 server.listen(3000, () => {
   console.log("listening on *:3000");
-});
-
-app.get("/playground", (req, res) => {
-  app.use(express.static(__dirname + "/public"));
-  res.sendFile(__dirname + "/playground.html");
 });
