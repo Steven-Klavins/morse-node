@@ -6,10 +6,10 @@
 </head>
 
 <body>
-    <div>
+    <div class="container">
         <h1>Morse Node</h1>
         <div id="indication_light" class="indication_light"></div>
-        <button onmousedown="onTapDown()" onmouseup="onTapUp()">Tap</button>
+        <button onmousedown="onTapDown()" onmouseup="onTapUp()" ontouchstart="onTapDown()" ontouchend="onTapUp()">Tap</button>
     </div>
 </body>
 
@@ -17,6 +17,7 @@
 
     function onTapDown() {
         document.getElementById("indication_light").style.backgroundColor = "green";
+        window.navigator.vibrate(200);
     }
 
     function onTapUp() {

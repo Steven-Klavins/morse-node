@@ -11,6 +11,10 @@ const io = new Server(server);
 // const __dirname = url.fileURLToPath(new URL(".", import.meta.url));
 
 app.get("/", (req, res) => {
+<<<<<<< HEAD
+=======
+  app.use(express.static(__dirname + "/public"));
+>>>>>>> bf0bef5ed3a753970194918f6116319692485f27
   res.sendFile(__dirname + "/test.html");
 });
 
@@ -19,6 +23,12 @@ io.on("connection", (socket) => {
     console.log("message: " + msg);
     io.emit("chat message", msg);
   });
+<<<<<<< HEAD
+=======
+  socket.on("touch event", (short) => {
+    console.log(short);
+  });
+>>>>>>> bf0bef5ed3a753970194918f6116319692485f27
 });
 
 server.listen(3000, () => {
