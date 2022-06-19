@@ -6,6 +6,7 @@ const socket = io();
 
 const touchLong = () => {
   socket.emit("touch long");
+  socket.emit("user connected", "john");
 };
 
 const touchShort = () => {
